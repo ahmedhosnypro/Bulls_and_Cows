@@ -20,4 +20,9 @@ class Car extends Vehicle {
         super(licensePlate);
         this.numberOfSeats = numberOfSeats;
     }
+
+    @Override
+    public String toString() {
+        return "Car{licensePlate=" + licensePlate + ",numberOfSeats=" + numberOfSeats + "}";
+    }
 }
