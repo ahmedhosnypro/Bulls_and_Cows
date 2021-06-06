@@ -1,41 +1,17 @@
 package bullscows;
 
-import java.util.Arrays;
-
 public class Grader {
     static void grader(int secret, int attempt) {
-
-        int[] secretDigits = new int[4];
-        int[] attemptDigits = new int[4];
-        int index = 0;
-        int secretCopy =secret;
-        while (index < 4){
-            int s = secretCopy % 10;
-            int a = attempt % 10;
-            secretDigits[index] = s;
-            attemptDigits[index] = a;
-            index++;
-            secretCopy /= 10;
-            attempt /= 10;
-        }
+        String secretDigits = String.valueOf(secret);
+        String attemptDigits = String.valueOf(attempt);
         int bulls = 0;
         int cows = 0;
-        if (Arrays.equals(secretDigits, attemptDigits)){
-            bulls = 4;
-        }
-        else {
-            for (int i = 0; i < secretDigits.length; i++){
-                for (int j = 0; j < attemptDigits.length; j++){
-                    if (i == j){
-                        if (attemptDigits[i] == (secretDigits[i]))
-                            bulls++;
-                    }
-                    else {
-                        if (attemptDigits[j] == (secretDigits[i]))
-                            cows++;
-                    }
-
-                }
+        for (int i = 0; i < secretDigits.length(); i++){
+            if (secretDigits.charAt(i) == attemptDigits.charAt(i)){
+                bulls++;
+            }
+            else if (secretDigits.contains(String.valueOf(attemptDigits.charAt(i)))){
+                cows++;
             }
         }
         System.out.println("Grade: " +

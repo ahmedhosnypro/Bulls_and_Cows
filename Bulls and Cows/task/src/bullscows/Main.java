@@ -2,14 +2,15 @@ package bullscows;
 
 import java.util.Scanner;
 
-import static bullscows.Grader.grader;
+import static bullscows.SecretNumberGenerator.generateSecretNumber;
 
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        int attempt = scanner.nextInt();
-        int secret = 9305;
-        grader(secret, attempt);
+        while (true){
+            int length = scanner.nextInt();
+            generateSecretNumber(length);
+        }
     }
 }
 
