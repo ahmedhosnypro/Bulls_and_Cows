@@ -308,6 +308,104 @@ files:
         }
     }
   learner_created: false
+- name: src/bullscows/Play.java
+  visible: true
+  text: |
+    package bullscows;
+
+    import java.util.Scanner;
+
+    import static bullscows.Grader.grader;
+    import static bullscows.SecretNumberGenerator.generateSecretNumber;
+
+    public class Play {
+        static void play(){
+            System.out.println("Please, enter the secret code's length:");
+            Scanner scanner = new Scanner(System.in);
+            int length = scanner.nextInt();
+            if (length > 10){
+                System.out.println("Error: can't generate a secret number with a length of " +
+                        length + " because there aren't enough unique digits.");
+            }
+            else {
+                int secret = generateSecretNumber(length);
+                System.out.println("Okay, let's start a game!");
+                int turn = 1;
+                while (true){
+                    System.out.println("Turn " + turn +":");
+                    String attempt = scanner.next();
+                    if (!grader(secret, attempt))
+                        break;
+                }
+            }
+
+        }
+    }
+  learner_created: true
+- name: src/bullscows/Grader.java
+  visible: true
+  text: |
+    package bullscows;
+
+    public class Grader {
+        static boolean grader(int secret, String attempt) {
+            boolean isNotFinished = true;
+            String secretDigits = String.valueOf(secret);
+            int bulls = 0;
+            int cows = 0;
+            for (int i = 0; i < secretDigits.length(); i++){
+                if (secretDigits.charAt(i) == attempt.charAt(i)){
+                    bulls++;
+                }
+                else if (secretDigits.contains(String.valueOf(attempt.charAt(i)))){
+                    cows++;
+                }
+            }
+            StringBuilder printer = new StringBuilder("Grade: ");
+            if (bulls > 0 && cows > 0){
+                if (bulls == 1 & cows == 1)
+                    printer.append(bulls).append(" bull and ").append(cows).append(" cow");
+                else
+                    printer.append(bulls).append(" bulls and ").append(cows).append(" cows");
+            }
+            else if (bulls > 0 && cows == 0){
+                if (bulls == secretDigits.length() && secretDigits.length() > 1) {
+                    printer.append(bulls).append(" bulls\n").append("Congratulations! You guessed the secret code.");
+                    isNotFinished = false;
+                }
+                else if (bulls == 1)
+                    printer.append(bulls).append(" bull");
+                else if (bulls < secretDigits.length())
+                    printer.append(bulls).append(" bulls");
+            }
+            else if (cows > 0 && bulls == 0){
+                if (cows == 1)
+                    printer.append(cows).append(" cow");
+                else
+                    printer.append(cows).append(" cows");
+            }
+            else if (bulls == 0 && cows ==0){
+                printer.append("None");
+            }
+            System.out.println(printer);
+            return isNotFinished;
+        }
+    }
+  learner_created: true
+- name: src/bullscows/Printer.java
+  visible: true
+  text: |-
+    package bullscows;
+
+    public class Printer {
+    }
+  learner_created: true
+- name: src/bullscows/RandomCodeGenerator.java
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/53/stages/292/implement#comment
-status: Unchecked
-record: -1
+status: Solved
+feedback:
+  message: Congratulations!
+  time: Mon, 07 Jun 2021 02:14:41 UTC
+record: 6

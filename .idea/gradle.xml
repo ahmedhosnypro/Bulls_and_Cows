@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
@@ -47,6 +48,9 @@
             <option value="$PROJECT_DIR$/Topics/Manipulating fields and methods/Changing the account balance" />
             <option value="$PROJECT_DIR$/Topics/Manipulating fields and methods/Invoking a method" />
             <option value="$PROJECT_DIR$/Topics/Manipulating fields and methods/Theory" />
+            <option value="$PROJECT_DIR$/Topics/Math library/Heron's formula" />
+            <option value="$PROJECT_DIR$/Topics/Math library/Pow" />
+            <option value="$PROJECT_DIR$/Topics/Math library/Theory" />
             <option value="$PROJECT_DIR$/Topics/Retrieving Class instances/Retrieve class name" />
             <option value="$PROJECT_DIR$/Topics/Retrieving Class instances/Theory" />
             <option value="$PROJECT_DIR$/Topics/The Collections Framework overview/Blacklist" />

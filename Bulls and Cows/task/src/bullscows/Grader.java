@@ -1,16 +1,15 @@
 package bullscows;
 
 public class Grader {
-    static boolean grader(int secret, String attempt) {
+    static boolean grader(String secret, String attempt) {
         boolean isNotFinished = true;
-        String secretDigits = String.valueOf(secret);
         int bulls = 0;
         int cows = 0;
-        for (int i = 0; i < secretDigits.length(); i++){
-            if (secretDigits.charAt(i) == attempt.charAt(i)){
+        for (int i = 0; i < secret.length(); i++){
+            if (secret.charAt(i) == attempt.charAt(i)){
                 bulls++;
             }
-            else if (secretDigits.contains(String.valueOf(attempt.charAt(i)))){
+            else if (secret.contains(String.valueOf(attempt.charAt(i)))){
                 cows++;
             }
         }
@@ -22,13 +21,13 @@ public class Grader {
                 printer.append(bulls).append(" bulls and ").append(cows).append(" cows");
         }
         else if (bulls > 0 && cows == 0){
-            if (bulls == secretDigits.length() && secretDigits.length() > 1) {
+            if (bulls == secret.length() && secret.length() > 1) {
                 printer.append(bulls).append(" bulls\n").append("Congratulations! You guessed the secret code.");
                 isNotFinished = false;
             }
             else if (bulls == 1)
                 printer.append(bulls).append(" bull");
-            else if (bulls < secretDigits.length())
+            else if (bulls < secret.length())
                 printer.append(bulls).append(" bulls");
         }
         else if (cows > 0 && bulls == 0){

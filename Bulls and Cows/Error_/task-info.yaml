@@ -408,6 +408,151 @@ files:
         }
     }
   learner_created: false
+- name: src/bullscows/RandomCodeGenerator.java
+  visible: true
+  text: |
+    package bullscows;
+
+    import java.util.Random;
+
+    public class RandomCodeGenerator {
+        static String generateSecretNumber(int length, int symbolRange) {
+            StringBuilder secretCode = new StringBuilder("");
+            while (secretCode.length() < length) {
+                long pseudoRandomNumber = System.nanoTime();
+                Random random = new Random(pseudoRandomNumber);
+                int randomSymbolRange = random.nextInt(symbolRange);
+                char randChar = (char) (randomSymbolRange < 10 ? randomSymbolRange + 48 : randomSymbolRange + 87);
+                if (secretCode.indexOf(String.valueOf(randChar)) == -1) {
+                    secretCode.append(randChar);
+                }
+            }
+            return secretCode.toString();
+        }
+    }
+  learner_created: true
+- name: src/bullscows/Play.java
+  visible: true
+  text: |
+    package bullscows;
+
+    import java.util.Scanner;
+
+    import static bullscows.Grader.grader;
+    import static bullscows.RandomCodeGenerator.generateSecretNumber;
+
+    public class Play {
+        static void play(){
+            System.out.println("Please, enter the secret code's length:");
+            Scanner scanner = new Scanner(System.in);
+            int length = 0;
+            try {
+                length = Integer.parseInt(scanner.nextLine().trim());
+            }
+            catch (NumberFormatException e){
+                System.out.println("enter a number");
+            }
+
+            if (length > 36){
+                System.out.println("Error: can't generate a secret number with a length of " +
+                        length + " because there aren't enough unique digits.");
+            }
+            else {
+                System.out.println("Input the number of possible symbols in the code:");
+                int symbolRange = 0;
+                try {
+                    symbolRange = Integer.parseInt(scanner.nextLine());
+                }
+                catch (NumberFormatException e){
+                    System.out.println("enter a number");
+                }
+                String secret = generateSecretNumber(length, symbolRange);
+                System.out.println(preparedSecret(length, symbolRange));
+                int turn = 1;
+                String attempt = "";
+                do {
+                    System.out.println("Turn " + turn +":");
+                    attempt = scanner.nextLine();
+                    turn++;
+                }while (grader(secret, attempt));
+            }
+
+        }
+        private static String preparedSecret(int length, int symbolRange){
+            symbolRange--;
+            StringBuilder sb = new StringBuilder("");
+            sb.append("The secret is prepared: ");
+            sb.append("*".repeat(Math.max(0, length)));
+            sb.append(" ");
+            if (symbolRange < 10){
+                char ch = (char) (symbolRange + 48);
+                sb.append("(").append(0).append("-").append(ch).append(").");
+            }
+            else {
+                char ch = (char) (symbolRange + 87);
+                sb.append("(").append(0).append("-").append(9).append(", ").append("a-").append(ch).append(").");
+            }
+            return sb.toString();
+        }
+    }
+  learner_created: true
+- name: src/bullscows/Grader.java
+  visible: true
+  text: |
+    package bullscows;
+
+    public class Grader {
+        static boolean grader(String secret, String attempt) {
+            boolean isNotFinished = true;
+            int bulls = 0;
+            int cows = 0;
+            for (int i = 0; i < secret.length(); i++){
+                if (secret.charAt(i) == attempt.charAt(i)){
+                    bulls++;
+                }
+                else if (secret.contains(String.valueOf(attempt.charAt(i)))){
+                    cows++;
+                }
+            }
+            StringBuilder printer = new StringBuilder("Grade: ");
+            if (bulls > 0 && cows > 0){
+                if (bulls == 1 & cows == 1)
+                    printer.append(bulls).append(" bull and ").append(cows).append(" cow");
+                else
+                    printer.append(bulls).append(" bulls and ").append(cows).append(" cows");
+            }
+            else if (bulls > 0 && cows == 0){
+                if (bulls == secret.length() && secret.length() > 1) {
+                    printer.append(bulls).append(" bulls\n").append("Congratulations! You guessed the secret code.");
+                    isNotFinished = false;
+                }
+                else if (bulls == 1)
+                    printer.append(bulls).append(" bull");
+                else if (bulls < secret.length())
+                    printer.append(bulls).append(" bulls");
+            }
+            else if (cows > 0 && bulls == 0){
+                if (cows == 1)
+                    printer.append(cows).append(" cow");
+                else
+                    printer.append(cows).append(" cows");
+            }
+            else if (bulls == 0 && cows ==0){
+                printer.append("None");
+            }
+            System.out.println(printer);
+            return isNotFinished;
+        }
+    }
+  learner_created: true
+- name: src/bullscows/Printer.java
+  visible: true
+  text: |-
+    package bullscows;
+
+    public class Printer {
+    }
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/53/stages/293/implement#comment
 status: Unchecked
-record: -1
+record: 7

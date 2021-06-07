@@ -244,7 +244,7 @@ files:
         }
     }
   learner_created: false
-- name: src/bullscows/SecretNumberGenerator.java
+- name: src/bullscows/SecretCodeGenerator.java
   visible: true
   text: |
     package bullscows;
@@ -334,4 +334,4 @@ status: Solved
 feedback:
   message: Congratulations!
   time: Sun, 06 Jun 2021 18:38:29 UTC
-record: -1
+record: 4

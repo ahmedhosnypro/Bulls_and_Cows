@@ -114,7 +114,7 @@ files:
         }
     }
   learner_created: false
-- name: src/bullscows/SecretNumberGenerator.java
+- name: src/bullscows/SecretCodeGenerator.java
   visible: true
   text: "package bullscows;\n\npublic class SecretNumberGenerator {\n    \n}\n"
   learner_created: true
