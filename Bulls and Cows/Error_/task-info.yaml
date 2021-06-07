@@ -480,14 +480,6 @@ files:
         }
     }
   learner_created: true
-- name: src/bullscows/Printer.java
-  visible: true
-  text: |-
-    package bullscows;
-
-    public class Printer {
-    }
-  learner_created: true
 - name: src/bullscows/Play.java
   visible: true
   text: |
@@ -558,5 +550,5 @@ status: Solved
 feedback:
   message: Well done! You finished the project. Select a new project on <a href="https://hyperskill.org/projects">JetBrains
     Academy</a> to continue learning.
-  time: Mon, 07 Jun 2021 03:04:37 UTC
+  time: Mon, 07 Jun 2021 03:06:03 UTC
 record: 7
