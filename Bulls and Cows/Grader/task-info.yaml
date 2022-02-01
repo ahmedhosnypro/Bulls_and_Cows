@@ -183,12 +183,9 @@ files:
 - name: src/bullscows/Grader.java
   visible: true
   learner_created: true
-- name: src/bullscows/SecretCodeGenerator.java
-  visible: true
-  learner_created: true
-feedback_link: https://hyperskill.org/projects/53/stages/288/implement#comment
+feedback_link: https://hyperskill.org/learn/step/5430#comment
 status: Solved
 feedback:
   message: Congratulations!
-  time: Sun, 06 Jun 2021 10:46:10 UTC
+  time: Tue, 01 Feb 2022 16:55:32 UTC
 record: 2
